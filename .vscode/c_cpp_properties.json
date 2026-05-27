@@ -1,0 +1,46 @@
+{
+    "configurations": [
+        {
+            "name": "Target_1",
+            "includePath": [
+                "c:\\Users\\xcr\\OneDrive\\教学资料\\2026春\\单片机原理及应用\\keilproj\\shiyan\\src",
+                "c:\\Users\\xcr\\OneDrive\\教学资料\\2026春\\单片机原理及应用\\keilproj\\shiyan\\src\\lib",
+                "c:\\Users\\xcr\\OneDrive\\教学资料\\2026春\\单片机原理及应用\\keilproj\\shiyan\\src\\include"
+            ],
+            "defines": [
+                "__C51__",
+                "__VSCODE_C51__",
+                "reentrant=",
+                "compact=",
+                "small=",
+                "large=",
+                "data=",
+                "idata=",
+                "pdata=",
+                "bdata=",
+                "xdata=",
+                "code=",
+                "bit=char",
+                "sbit=char",
+                "sfr=char",
+                "sfr16=int",
+                "sfr32=int",
+                "interrupt=",
+                "using=",
+                "_at_=",
+                "_priority_=",
+                "_task_="
+            ],
+            "intelliSenseMode": "${default}",
+            "browse": {
+                "path": [],
+                "limitSymbolsToIncludedHeaders": false,
+                "databaseFilename": ""
+            },
+            "compilerPath": "c51",
+            "compileCommands": "c:\\Users\\xcr\\OneDrive\\教学资料\\2026春\\单片机原理及应用\\keilproj\\shiyan\\compile_commands.json"
+        }
+    ],
+    "version": 4,
+    "enableConfigurationSquiggles": true
+}

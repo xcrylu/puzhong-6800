@@ -1,0 +1,30 @@
+{
+    "workspace": {
+        "projects": [
+            {
+                "path": "c:\\Users\\xcr\\OneDrive\\教学资料\\2026春\\单片机原理及应用\\keilproj\\shiyan\\test.uvproj",
+                "active": false,
+                "closed": false,
+                "activeTarget": "Target_1"
+            },
+            {
+                "path": "c:\\Users\\xcr\\OneDrive\\教学资料\\2026春\\单片机原理及应用\\keilproj\\shiyan\\time.uvproj",
+                "active": false,
+                "closed": false,
+                "activeTarget": "Target_1"
+            },
+            {
+                "path": "c:\\Users\\xcr\\OneDrive\\教学资料\\2026春\\单片机原理及应用\\keilproj\\shiyan\\tm1637.uvproj",
+                "active": false,
+                "closed": false,
+                "activeTarget": "Target_1"
+            },
+            {
+                "path": "c:\\Users\\xcr\\OneDrive\\教学资料\\2026春\\单片机原理及应用\\keilproj\\shiyan\\实验.uvproj",
+                "active": true,
+                "closed": false,
+                "activeTarget": "Target_1"
+            }
+        ]
+    }
+}

@@ -1,0 +1,21 @@
+# Ignore assembler/listing outputs
+Listings/
+
+# Optional: ignore build artifacts commonly present in this project
+Objects/
+Project Backups/
+# *.uvproj
+*.uvopt
+*.uvgui.xcr
+*.uvproj.bak
+*.uvopt.bak
+
+
+# Proteus simulation backup folders
+proteus仿真/Project Backups/
+*.workspace
+
+# Ignore cache files
+.cahce/
+*.log
+*.lock
