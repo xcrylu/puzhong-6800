@@ -387,9 +387,9 @@
               <FilePath>.\src\lib\uart.c</FilePath>
             </File>
             <File>
-              <FileName>ds1302.c</FileName>
+              <FileName>dac0832.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\lib\ds1302.c</FilePath>
+              <FilePath>.\src\lib\dac0832.c</FilePath>
             </File>
           </Files>
         </Group>

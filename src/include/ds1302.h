@@ -63,7 +63,7 @@ void DS1302_ReadTime(DS1302_Time *time);
 void DS1302_WriteDate(DS1302_Date date);
 void DS1302_ReadDate(DS1302_Date *date);
 
-void DS1302_WriteReadBurst(unsigned char addr,const unsigned char *buf,unsigned char size);   
+void DS1302_WriteBurst(unsigned char addr,const unsigned char *buf,unsigned char size);   
 void DS1302_ReadBurst(unsigned char addr,unsigned char *buf,unsigned char size);
 void DS1302_WriteProtect(unsigned char enable) ; 
 
