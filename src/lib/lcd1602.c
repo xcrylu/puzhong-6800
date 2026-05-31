@@ -102,6 +102,7 @@ void LCD1602_SetCursor(unsigned char row, unsigned char col) {
 void LCD1602_WriteString(unsigned char *str) {
     while(*str) {
         LCD1602_WriteData(*str++);
+        //LCD1602_Delay(5);
                 
     }
 }
@@ -117,23 +118,25 @@ void LCD1602_WriteInt( int num) {
     LCD1602_WriteString(buf);      
 }
 
-// // 以下为测试代码
-// void Test(void)
-// {
-//     LCD1602_Init();
-//     LCD1602_WriteString("Hello, World!");
-//     delay_ms(1000);
-//     LCD1602_WriteString("Hello, LCD!");
-//     delay_ms(1000);
-//     LCD1602_WriteString("Hello, LCD!");
-//     delay_ms(1000);
-//     while(1);
-// }
+//  // 以下为测试代码
+//  void Test(void)
+//  {
+//      LCD1602_Init();
+//      LCD1602_SetCursor(0, 0);
+//      LCD1602_WriteString("Hello, world!");
+//      delay_ms(1000);
+//      LCD1602_SetCursor(1, 0);
+//      LCD1602_WriteString("woshi xcr!");
+//      delay_ms(1000);
+//      //LCD1602_WriteString("Hello, LCD!");
+//      //delay_ms(1000);
+//      while(1);
+//  }
 
-// void main()
-// {
-//     Test();
-//     while(1);
-// }
+//  void main()
+//  {
+//      Test();
+//      while(1);
+//  }
 
 

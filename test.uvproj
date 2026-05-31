@@ -382,14 +382,9 @@
               <FilePath>.\src\lib\common.c</FilePath>
             </File>
             <File>
-              <FileName>uart.c</FileName>
+              <FileName>key.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\lib\uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>dac0832.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\lib\dac0832.c</FilePath>
+              <FilePath>.\src\lib\key.c</FilePath>
             </File>
           </Files>
         </Group>

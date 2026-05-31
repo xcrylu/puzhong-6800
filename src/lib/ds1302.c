@@ -40,14 +40,16 @@ unsigned char DS1302_Read8(void)
     for (i = 0; i < 8; i++)
     {
         dat >>= 1;
-        DS1302_SCLK = 1; // sclk下降沿输出数据
-        delay_us(1);
+       
         DS1302_SCLK = 0; // sclk下降沿输出数据
+			  delay_us(1);
         if (DS1302_IO)
         {
             dat |= 0x80;
         }
+		    DS1302_SCLK = 1; // sclk下降沿输出数据
         delay_us(1);
+       // delay_us(1);
     }
 
     return dat;
@@ -56,6 +58,7 @@ unsigned char DS1302_Read8(void)
 void DS1302_WriteByte(unsigned char addr, unsigned char dat)
 {
     
+	// DS1302_SCLK = 0;
     DS1302_CE = 1; // 设置IO为输出
     delay_us(1);
     // 写命令/地址
@@ -65,6 +68,9 @@ void DS1302_WriteByte(unsigned char addr, unsigned char dat)
 
     DS1302_Write8(dat);
     DS1302_CE = 0; // 结束传输
+	
+	  delay_ms(10);
+	//   DS1302_SCLK = 0;
 }
 
 // ds1302读取字节函数,clk输出数据
@@ -72,6 +78,7 @@ unsigned char DS1302_ReadByte(unsigned char addr)
 {
 
     unsigned char dat = 0;
+	// DS1302_SCLK = 0;
     DS1302_CE = 1; // 设置IO为输入
     delay_us(1);
     // 写命令/地址
@@ -82,7 +89,9 @@ unsigned char DS1302_ReadByte(unsigned char addr)
     DS1302_IO = 1;
     dat = DS1302_Read8();
     DS1302_CE = 0; // 结束传输
-
+	// DS1302_SCLK = 0;
+     
+	  delay_ms(10);
     return dat;
 }
 
@@ -90,6 +99,7 @@ void DS1302_WriteTime(DS1302_Time time)
 {
 
     // DS1302_WriteProtect(0);
+	  
     DS1302_WriteByte(DS1302_SECOND_ADDR, (time.second / 10 << 4) | (time.second % 10));
     DS1302_WriteByte(DS1302_MINUTE_ADDR, (time.minute / 10 << 4) | (time.minute % 10));
     DS1302_WriteByte(DS1302_HOUR_ADDR, (time.hour / 10 << 4) | (time.hour % 10));
@@ -187,47 +197,58 @@ void DS1302_WriteProtect(unsigned char enable)
 }
 
 
-// // 测试DS1302
-// #include "uart.h"
-// #include "stdio.h"
+// 测试DS1302
+#include "uart.h"
+#include "stdio.h"
+#include "lcd1602.h"
 
-// void Test()
-// {
+void Test()
+{
     
-//     DS1302_Time time;
-//     DS1302_Date date;
+    DS1302_Time time;
+    DS1302_Date date;
 
-//     uchar buf[32];
+    uchar buf[32];
+    
+    DS1302_Time init_time = {12, 30, 0};
+    DS1302_Date init_date = {23, 12, 25, 5};
 
-//     DS1302_Time init_time = {12, 30, 0};
-//     DS1302_Date init_date = {23, 12, 25, 5};
+    uart_init();
+    LCD1602_Init();
+    
+    delay_ms(100);
+		DS1302_WriteProtect(0);
+    DS1302_WriteBurst(DS1302_RAM_BURST_WRITE, "1234567ghigklmnopqrstuvwxyz", 26);
 
-//     uart_init();
+    DS1302_WriteTime(init_time);
+    DS1302_WriteDate(init_date);
 
-//     delay_ms(100);
-//     DS1302_WriteBurst(DS1302_RAM_BURST_WRITE, "abcedfghigklmnopqrstuvwxyz", 26);
+    DS1302_ReadTime(&time);
+    DS1302_ReadDate(&date);		
 
-//     DS1302_WriteTime(init_time);
-//     DS1302_WriteDate(init_date);
+    DS1302_WriteBurst(DS1302_RAM_BURST_WRITE, "abcdefghij1234567890", 20);
+    DS1302_ReadBurst(DS1302_RAM_BURST_READ, buf, 20);
 
-//     DS1302_ReadTime(&time);
-//     DS1302_ReadDate(&date);		
-
-//     DS1302_WriteBurst(DS1302_RAM_BURST_WRITE, "abcdefghij1234567890", 20);
-//     DS1302_ReadBurst(DS1302_RAM_BURST_READ, buf, 20);
-
-//     while (1)
-//     {
-//         DS1302_ReadTime(&time);
-//         DS1302_ReadDate(&date);
-        
-//         sprintf(buf, "%02U:%02U:%02U %02U-%02U-%02U %U **", (unsigned int )time.hour, (unsigned int )time.minute, (unsigned int )time.second,\
-//                                  (unsigned int )date.year, (unsigned int )date.month, ((unsigned int )date.day) & 0x0F, (unsigned int )date.weekday);
-//         uart_send_str(buf);	
+    while (1)
+    {
+        DS1302_ReadTime(&time);
+        DS1302_ReadDate(&date);
+        LCD1602_SetCursor(0, 0);
+        LCD1602_WriteString("Time: ");
+			  //uart_send_byte(time.hour);
+			  //uart_send_byte(time.minute);
+				//uart_send_byte(time.second);
+        sprintf(buf, "%02U:%02U:%02U", (unsigned int )time.hour, (unsigned int )time.minute, (unsigned int )time.second);
+        LCD1602_WriteString(buf);
+        LCD1602_SetCursor(1, 0);
+        LCD1602_WriteString("D: "); 
+        sprintf(buf, "20%02U-%02U-%02U %1U",  (unsigned int )date.year, (unsigned int )date.month, (unsigned int )date.day,(unsigned int )date.weekday);
+        LCD1602_WriteString(buf);  
+			//uart_send_str(buf);	
             
-//     }
-// }
-// void main(void)
-// {
-//     Test();
-// }
+    }
+}
+void main(void)
+{
+    Test();
+}
