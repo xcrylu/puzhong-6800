@@ -3,8 +3,8 @@
 void uart_init()
 {
     SCON =  0x50;
-    //TMOD = (TMOD & 0x0f) | 0x20;
-      TMOD = 0x20;
+    TMOD = (TMOD & 0x0f) | 0x20;
+    //TMOD = 0x20;
     TH1 = 0xFD;           //11.059Mhz ,bps = 9600
     TL1 = 0xFD;
     TR1 = 1;
@@ -12,7 +12,7 @@ void uart_init()
 
 void uart_send_byte(unsigned char c)
 {
-      SBUF = c;
+    SBUF = c;
     while(!TI);
     TI = 0;
     

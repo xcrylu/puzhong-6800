@@ -39,5 +39,7 @@ void SEG7_mpx8_set_digit(unsigned char digit, unsigned char dat);
  * @details 该函数将8位数码管显示的数字刷新到数码管上。
  */
 void SEG7_mpx8_display();
+void SEG7_mpx8_display_by_timer();
+
 
 #endif

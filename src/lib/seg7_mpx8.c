@@ -20,6 +20,17 @@ void SEG7_mpx8_display()
     }
 }
 
+void SEG7_mpx8_display_by_timer()
+{
+    static unsigned char i;
+    
+    SEG7_DIGIT_PORT = (i%8)<<2;
+    SEG7_DATA_PORT = 0x00; //消隐
+    SEG7_DATA_PORT = DIGITS_CODE[SEG_BUF[i%8]];
+    i++;    
+
+}
+
 void SEG7_mpx8_set_digit(unsigned char digit, unsigned char dat)
 {
     SEG_BUF[digit] = dat;
